@@ -1,23 +1,23 @@
-#### `Promethues Deploy Guideline`
+#### `Promethues 部署指南`
 
-[中文](README_cn.md) | English
+中文 | [English](README.md)
 
-#### `What is Prometheus?`
-    Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.
+#### `什么是Prometheus?`
+    Prometheus是一个开源的系统监控和警报工具包，最初在SoundCloud建立。
 
-### `Features`
-Prometheus's main features are:
+### `功能`
+Prometheus的主要功能:
 
-* a multi-dimensional data model with time series data identified by metric name and key/value pairs
-* PromQL, a flexible query language to leverage this dimensionality
-* no reliance on distributed storage; single server nodes are autonomous
-* time series collection happens via a pull model over HTTP
-* pushing time series is supported via an intermediary gateway
-* targets are discovered via service discovery or static configuration
-* multiple modes of graphing and dashboarding support
+* 一个多维的数据模型，其中的时间序列数据由指标名称和键/值对识别
+* PromQL是一种灵活的查询语言，可以利用这种维度。
+* 不依赖分布式存储；单个服务器节点是自主的
+* 通过HTTP的拉动模式进行时间序列的收集
+* 通过中间网关支持时间序列的推送
+* 通过服务发现或静态配置来发现目标
+* 支持多种模式的图表和仪表盘制作
 
 
-### `Prometheus In Docker`
+### `在docker中部署Prometheus`
 ``` docker
 docker run -d \
     -p 9090:9090 \
@@ -26,7 +26,7 @@ docker run -d \
     prom/prometheus
 ```
 
-### `Jenkins In Docker`
+### `在docker中部署Jenkins`
 
 * `Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.`
   
@@ -40,21 +40,21 @@ docker run -d -p 8080:8080 -p 5000:5000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   jenkins/jenkins:latest
 ```
-###### The user jenkins needs to be added to the group docker
+###### 必须把jenkins用户添加到docker用户组
 ```shell
 sudo usermod -aG docker jenkins
 sudo chmod 777 /var/run/docker.sock
 ```
-###### Then restart your jenkins server to refresh the group.
+###### 启动Jenkins服务和刷新用户组.
 ```shell
 docker restart jenkins
 ```
-##### or reboot your compter
+##### 或者重启服务器
 ```shell
 sudo reboot
 ```
 
-### `Granafa In Docker`
+### `在docker中部署Granafa`
 * `Grafana allows you to query, visualize, alert on and understand your metrics no matter where they are stored. Create, explore, and share dashboards with your team and foster a data driven culture:`
 
 ```docker
@@ -64,8 +64,9 @@ docker run -d -p 3001:3000 \
 ```
 
 
-### `Cadvisor In Docker`
-* `cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.`
+### `在docker中部署Cadvisor`
+* `cAdvisor (Container Advisor) 
+为容器用户提供了对其运行中的容器的资源使用和性能特征的了解。它是一个运行中的守护程序，收集、汇总、处理和输出运行中的容器的信息。具体来说，它为每个容器保存资源隔离参数、历史资源使用情况、完整的历史资源使用直方图和网络统计数据。这些数据是按容器和机器范围导出的。`
   
 ```docker
 sudo docker run \
@@ -86,8 +87,7 @@ sudo docker run \
 
 <font color=Green>Node Export</font>
 ```text
-The node_exporter is designed to monitor the host system. 
-It's not recommended to deploy it as a Docker container
+node_exporter被设计用来监控主机系统。不建议将其作为Docker容器部署。
 ```
 
 [Node Exporter docs](https://github.com/prometheus/node_exporter)
@@ -97,11 +97,11 @@ It's not recommended to deploy it as a Docker container
     `Expose Jenkins metrics in prometheus format`
     [Jenkins Prometheus metrics docs](https://plugins.jenkins.io/prometheus/)
 
-### `Create Postgresql Database Container`
+### `创建PostgreSQL容器`
 ```
 docker run -d --name postgres -e POSTGRES_PASSWORD=12345678 -e POSTGRES_DBNAME=emperor_production -e POSTGRES_USERNAME=emperor -p 5432:5432 postgres:11
 ```
-* view the container ipaddress
+* 显示容器的IP地址
 ```
 docker inspect -f "{{ .NetworkSettings.IPAddress }}" $container_name
 ```
