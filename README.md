@@ -21,9 +21,10 @@ Prometheus's main features are:
 ``` docker
 docker run -d \
     -p 9090:9090 \
+    --name=prometheus \
     --name prometheus \
     -v ~/tmp/prometheus.yml:/etc/prometheus/prometheus.yml \
-    prom/prometheus
+    prom/prometheus 
 ```
 
 ### `Jenkins In Docker`
@@ -83,6 +84,14 @@ sudo docker run \
 ```
 
 ### `Prometheus Exporter`
+
+```docker
+docker run -d -p 9100:9100 \
+  -v "/:/hostfs" \
+  --name=node-exporter \
+  prom/node-exporter \
+  --path.rootfs=/hostfs
+```
 
 <font color=Green>Node Export</font>
 ```text

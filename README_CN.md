@@ -21,6 +21,7 @@ Prometheus的主要功能:
 ``` docker
 docker run -d \
     -p 9090:9090 \
+    --name=prometheus \
     --name prometheus \
     -v ~/tmp/prometheus.yml:/etc/prometheus/prometheus.yml \
     prom/prometheus
@@ -28,7 +29,7 @@ docker run -d \
 
 ### `在docker中部署Jenkins`
 
-* `Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.`
+* `Jenkins: 一个开源的自动化服务器，使世界各地的开发者能够可靠地构建、测试和部署他们的软件。`
   
 ##### run command
 ``` docker
@@ -55,7 +56,7 @@ sudo reboot
 ```
 
 ### `在docker中部署Granafa`
-* `Grafana allows you to query, visualize, alert on and understand your metrics no matter where they are stored. Create, explore, and share dashboards with your team and foster a data driven culture:`
+* `Grafana允许你查询、可视化、提醒和了解你的指标，无论它们存储在哪里。创建、探索并与你的团队分享仪表盘，培养数据驱动文化。`
 
 ```docker
 docker run -d -p 3001:3000 \
@@ -84,6 +85,14 @@ sudo docker run \
 ```
 
 ### `Prometheus Exporter`
+
+```docker
+docker run -d -p 9100:9100 \
+  -v "/:/hostfs" \
+  --name=node-exporter \
+  prom/node-exporter \
+  --path.rootfs=/hostfs
+```
 
 <font color=Green>Node Export</font>
 ```text
