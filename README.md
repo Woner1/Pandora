@@ -1,6 +1,6 @@
 #### `Promethues Deploy Guideline`
 
-[中文](README_cn.md) | English
+[中文](README_CN.md) | English
 
 #### `What is Prometheus?`
     Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.
