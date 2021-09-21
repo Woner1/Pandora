@@ -84,7 +84,7 @@ sudo docker run \
   google/cadvisor:latest
 ```
 
-### `Prometheus Exporter`
+### `Prometheus导出器`
 
 ```docker
 docker run -d -p 9100:9100 \
